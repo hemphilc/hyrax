@@ -49,16 +49,19 @@ make install
 cd ..
 
 # Reconfigure and rebuild bes
-rm bes_config.log
-rm bes_make.log
-rm bes_make_check.log
-rm bes_make_install.log
+#rm bes_config.log
+#rm bes_make.log
+#rm bes_make_check.log
+#rm bes_make_install.log
 cd bes
 autoreconf -vif
 ./configure --prefix=$prefix --with-dependencies=$prefix/deps --enable-developer 2>&1 | tee ../bes_config.log
-make 2>&1 | tee ../bes_make.log
-make check 2>&1 | tee ../bes_make_check.log
-make install 2>&1 | tee ../bes_install.log
+make
+make check
+make install
+#make 2>&1 | tee ../bes_make.log
+#make check 2>&1 | tee ../bes_make_check.log
+#make install 2>&1 | tee ../bes_install.log
 cd ..
 
 user='bes'
@@ -66,5 +69,5 @@ group='bes_group'
 sed -i "/BES.User=*/c\BES.User=${user}" ~/hyrax/build/etc/bes/bes.conf
 sed -i "/BES.Group=.*/c\BES.Group=${group}" ~/hyrax/build/etc/bes/bes.conf
 
-./build/bin/besctl start
-./build/./apache-tomcat-7.0.57/bin/startup.sh
+#./build/bin/besctl start
+#./build/./apache-tomcat-7.0.57/bin/startup.sh
